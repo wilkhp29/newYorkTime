@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
-import {View} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {SharedElement} from 'react-native-shared-element';
+import {Linking} from 'react-native';
 
-// import { Container } from './styles';
+import {Bnt, BntText, Container, Card, Content, Img, Title} from './styles';
+import {news} from '../../utils';
 type RootStackParamList = {
-  NewsDetails: {news: {id: number; title: string}};
+  NewsDetails: {news: news};
 };
 
 type ScreenRouteProp = RouteProp<RootStackParamList, 'NewsDetails'>;
@@ -20,15 +22,26 @@ type Props = {
   navigation: ScreenNavigationProp;
 };
 const NewsDetails: React.FC<Props> = ({route, navigation}) => {
-  const {
-    news: {title},
-  } = route.params;
+  const {news} = route.params;
 
   useEffect(() => {
-    navigation.setOptions({title: title});
-  }, [navigation, title, route]);
+    navigation.setOptions({title: news.title});
+  }, [navigation, news, route]);
 
-  return <View />;
+  return (
+    <Container>
+      <Card>
+        <SharedElement id={`news.${news.title}.photo`}>
+          <Img resizeMode="stretch" source={{uri: news.multimedia[0].url}} />
+        </SharedElement>
+        <Title>{news.title}</Title>
+        <Content>{news.abstract}</Content>
+        <Bnt onPress={() => Linking.openURL(news.short_url)}>
+          <BntText>Go to Site</BntText>
+        </Bnt>
+      </Card>
+    </Container>
+  );
 };
 
 export default NewsDetails;

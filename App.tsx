@@ -22,7 +22,13 @@ function App() {
     <>
       <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <NavigationContainer theme={{dark: false, colors}}>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            cardStyleInterpolator: ({current: {progress}}) => {
+              return {cardStyle: {opacity: progress}};
+            },
+          }}>
           <Stack.Screen
             name="Home"
             component={Tabs}
@@ -33,7 +39,7 @@ function App() {
             component={NewsDetails}
             sharedElementsConfig={(route) => {
               const {news} = route.params;
-              return [`news.${news.id}`];
+              return [`news.${news.title}.photo`];
             }}
           />
         </Stack.Navigator>

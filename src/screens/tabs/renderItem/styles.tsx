@@ -6,7 +6,6 @@ const {width, height} = Dimensions.get('window');
 export const Container = styled.View`
   padding: 10px;
   align-items: center;
-  height: ${height / 3}px;
   width: 100%;
 `;
 export const Card = styled.TouchableOpacity`
@@ -19,17 +18,15 @@ export const Card = styled.TouchableOpacity`
 `;
 export const Img = styled.Image`
   width: ${width - 40}px;
-  height: 70%;
+  height: ${width / 2.5}px;
 `;
 export const Title = styled.Text`
-  flex: 1;
   text-align: center;
   color: #212121;
-  margin-top: -20px;
+  margin-top: 10px;
   font-weight: bold;
 `;
 export const Content = styled.Text`
-  flex: 1;
-  margin-top: -10px;
+  margin-top: 10px;
   color: #34495e;
 `;
