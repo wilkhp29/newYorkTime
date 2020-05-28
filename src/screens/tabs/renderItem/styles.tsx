@@ -7,13 +7,14 @@ export const Container = styled.View`
   padding: 10px;
   align-items: center;
   width: 100%;
+  height: ${height / 2.4 - 30}px;
 `;
 export const Card = styled.TouchableOpacity`
   flex: 1;
   background: #fff;
   padding: 10px;
   width: 100%;
-  border-radius: 10;
+  border-radius: 10px;
   align-items: center;
 `;
 export const Img = styled.Image`
